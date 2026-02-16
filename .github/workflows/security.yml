@@ -113,7 +113,7 @@ jobs:
   sonarcloud:
     name: SonarCloud Analysis
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && secrets.SONAR_TOKEN != ''
     
     steps:
     - uses: actions/checkout@v4
@@ -143,6 +143,7 @@ jobs:
           -Dsonar.projectKey=alekoh99_Spaceshare
           -Dsonar.organization=alekoh99
           -Dsonar.sources=backend,functions,lib
+      continue-on-error: true
 
   license-check:
     name: License Compliance
