@@ -17,7 +17,7 @@ jobs:
       contents: write
     
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     
     - name: Extract version
       id: version
@@ -44,10 +44,10 @@ jobs:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     
     - name: Setup Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: '18'
     
@@ -72,11 +72,12 @@ jobs:
           --exclude=.git \
           .
     
-    - name: Generate SBOM
+    - name: Generate SBOM (Optional)
       run: |
-        npm install -g @cyclonedx/npm
+        npm install -g @cyclonedx/npm || echo "⚠️  SBOM generation skipped"
         cd backend
-        cyclonedx-npm -o ../build-artifacts/sbom.xml || true
+        cyclonedx-npm -o ../build-artifacts/sbom.xml || echo "⚠️  SBOM file not generated"
+      continue-on-error: true
     
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
@@ -90,10 +91,10 @@ jobs:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     
     - name: Setup Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: '18'
     
