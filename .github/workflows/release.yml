@@ -79,7 +79,7 @@ jobs:
         cyclonedx-npm -o ../build-artifacts/sbom.xml || true
     
     - name: Upload artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: build-artifacts
         path: build-artifacts/
@@ -104,7 +104,7 @@ jobs:
         jsdoc -r . -d docs/ || echo "JSDoc not configured"
     
     - name: Upload documentation
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: api-documentation
         path: backend/docs/
