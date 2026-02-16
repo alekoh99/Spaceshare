@@ -1,6 +1,6 @@
-# spaceshare
+# Spaceshare
 
-A new Flutter project.
+A full-stack Flutter/Node.js space rental platform with real-time messaging, secure authentication, and integrated payment processing.
 
 ## Getting Started
 
