@@ -40,10 +40,20 @@ jobs:
     - name: Verify .gitignore compliance
       run: |
         echo "🔐 Verifying .gitignore compliance..."
-        if git check-ignore -q .env backend/.env serviceAccountKey.json; then
-          echo "✅ Sensitive files properly ignored"
+        files_to_check=(".env" "backend/.env" "serviceAccountKey.json")
+        all_ignored=true
+        for file in "${files_to_check[@]}"; do
+          if git check-ignore "$file" > /dev/null 2>&1; then
+            echo "  ✅ $file is ignored"
+          else
+            echo "  ❌ $file is NOT ignored"
+            all_ignored=false
+          fi
+        done
+        if [ "$all_ignored" = true ]; then
+          echo "✅ All sensitive files properly ignored"
         else
-          echo "❌ Sensitive files may not be ignored"
+          echo "❌ Some sensitive files may not be ignored"
           exit 1
         fi
     
