@@ -1,22 +1,2 @@
-                                                                   List of databases
-       Name        |     Owner     | Encoding | Locale Provider |   Collate   |    Ctype    | ICU Locale | ICU Rules |        Access privileges        
--------------------+---------------+----------+-----------------+-------------+-------------+------------+-----------+---------------------------------
- cashflow_pulse    | cashflow_user | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 |            |           | =Tc/cashflow_user              +
-                   |               |          |                 |             |             |            |           | cashflow_user=CTc/cashflow_user
- coffeebot         | postgres      | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 |            |           | 
- postgres          | postgres      | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 |            |           | 
- rental_db         | postgres      | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 |            |           | 
- rental_system     | postgres      | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 |            |           | =Tc/postgres                   +
-                   |               |          |                 |             |             |            |           | postgres=CTc/postgres          +
-                   |               |          |                 |             |             |            |           | rental_user=CTc/postgres
- sherehenow        | postgres      | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 |            |           | 
- spaceshare        | postgres      | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 |            |           | =Tc/postgres                   +
-                   |               |          |                 |             |             |            |           | postgres=CTc/postgres          +
-                   |               |          |                 |             |             |            |           | spaceshare=CTc/postgres
- techtask_platform | postgres      | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 |            |           | 
- template0         | postgres      | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 |            |           | =c/postgres                    +
-                   |               |          |                 |             |             |            |           | postgres=CTc/postgres
- template1         | postgres      | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 |            |           | =c/postgres                    +
-                   |               |          |                 |             |             |            |           | postgres=CTc/postgres
-(10 rows)
+
 
