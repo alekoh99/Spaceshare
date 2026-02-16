@@ -134,12 +134,15 @@ jobs:
       run: npm test -- --coverage || true
     
     - name: SonarCloud Scan
-      uses: SonarSource/sonarcloud-github-action@master
+      uses: SonarSource/sonarqube-scan-action@v5.0.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       with:
-        args: -Dsonar.projectKey=alekoh99_Spaceshare
+        args: >
+          -Dsonar.projectKey=alekoh99_Spaceshare
+          -Dsonar.organization=alekoh99
+          -Dsonar.sources=backend,functions,lib
 
   license-check:
     name: License Compliance
