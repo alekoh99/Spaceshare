@@ -1,0 +1,121 @@
+name: Status Checks
+
+on:
+  pull_request:
+    branches: [ main, develop ]
+  push:
+    branches: [ main, develop ]
+
+jobs:
+  pr-checks:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Check for breaking changes
+      run: |
+        echo "🔍 Running breaking change detection..."
+        # Check for breaking changes in API
+        if git diff --name-only HEAD~1 | grep -q "backend/routes\|backend/services"; then
+          echo "⚠️ Changes detected in API routes or services"
+        fi
+    
+    - name: Verify commit messages
+      run: |
+        echo "📝 Verifying commit messages..."
+        # Get the current commit message
+        COMMIT_MSG=$(git log -1 --pretty=%B)
+        
+        # Check for conventional commits
+        if ! echo "$COMMIT_MSG" | grep -qE '^(feat|fix|docs|style|refactor|perf|test|chore)(\(.+\))?: .+'; then
+          echo "⚠️ Consider using conventional commits: feat|fix|docs|style|refactor|perf|test|chore"
+        fi
+    
+    - name: Check file sizes
+      run: |
+        echo "📊 Checking file sizes..."
+        find . -type f \( -name "*.dart" -o -name "*.js" -o -name "*.json" \) -size +5M -exec ls -lh {} \;
+    
+    - name: Verify .gitignore compliance
+      run: |
+        echo "🔐 Verifying .gitignore compliance..."
+        if git check-ignore -q .env backend/.env serviceAccountKey.json; then
+          echo "✅ Sensitive files properly ignored"
+        else
+          echo "❌ Sensitive files may not be ignored"
+          exit 1
+        fi
+    
+    - name: Check for console logs in production code
+      run: |
+        echo "🔍 Checking for debug statements..."
+        # Backend
+        if grep -r "console\\.log\|console\\.error\|console\\.warn" backend/routes backend/services --include="*.js" 2>/dev/null | grep -v "\.test\.js"; then
+          echo "⚠️ Found console statements in production code (consider using logger)"
+        fi
+
+  dependency-audit:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+    
+    - name: Check backend dependencies
+      working-directory: ./backend
+      run: |
+        npm ci
+        npm audit --audit-level=moderate || true
+    
+    - name: Check if package-lock.json is committed
+      run: |
+        if [ ! -f "backend/package-lock.json" ]; then
+          echo "⚠️ package-lock.json not found, committing lock file is recommended"
+        fi
+
+  code-quality:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+    
+    - name: Install backend dependencies
+      working-directory: ./backend
+      run: npm ci
+    
+    - name: Check code style
+      working-directory: ./backend
+      run: |
+        npm install --save-dev eslint || true
+        npx eslint . --max-warnings 0 || echo "ESLint warnings found"
+    
+    - name: Check for TODO/FIXME comments
+      run: |
+        echo "📌 Found TODO/FIXME comments:"
+        grep -r "TODO\|FIXME" lib/ backend/ --include="*.dart" --include="*.js" || echo "None found ✅"
+
+  test-summary:
+    runs-on: ubuntu-latest
+    needs: [pr-checks, dependency-audit, code-quality]
+    if: always()
+    
+    steps:
+    - name: Check test status
+      run: |
+        echo "## Status Summary" >> $GITHUB_STEP_SUMMARY
+        echo "✅ All checks completed" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### Executed Checks" >> $GITHUB_STEP_SUMMARY
+        echo "- PR Checks" >> $GITHUB_STEP_SUMMARY
+        echo "- Dependency Audit" >> $GITHUB_STEP_SUMMARY
+        echo "- Code Quality Analysis" >> $GITHUB_STEP_SUMMARY

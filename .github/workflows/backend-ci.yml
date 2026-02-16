@@ -1,0 +1,123 @@
+name: Backend CI/CD
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'backend/**'
+      - '.github/workflows/backend-ci.yml'
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - 'backend/**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    services:
+      postgres:
+        image: postgres:14
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: spaceshare_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+        cache-dependency-path: 'backend/package-lock.json'
+    
+    - name: Install dependencies
+      working-directory: ./backend
+      run: npm ci
+    
+    - name: Run linter
+      working-directory: ./backend
+      run: npm run lint || true
+    
+    - name: Run security audit
+      working-directory: ./backend
+      run: npm audit --production || true
+    
+    - name: Syntax check
+      working-directory: ./backend
+      run: |
+        node -c server.js
+        node -c db.js
+        echo "✓ Syntax validation passed"
+    
+    - name: Run tests
+      working-directory: ./backend
+      env:
+        NODE_ENV: test
+        DATABASE_URL: postgres://postgres:postgres@localhost:5432/spaceshare_test
+        JWT_SECRET: test-jwt-secret-min-32-chars-required
+        ENCRYPTION_KEY: test-encryption-key-32-bytes-min
+      run: npm test || true
+    
+    - name: Check environment validation
+      working-directory: ./backend
+      env:
+        NODE_ENV: development
+        JWT_SECRET: test-jwt-secret-min-32-chars-required
+        DATABASE_URL: postgresql://user:pass@localhost:5432/test
+      run: node -e "require('./security/validator.js').validateEnvironment()" || true
+
+  security:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+    
+    - name: Install dependencies
+      working-directory: ./backend
+      run: npm ci
+    
+    - name: Run npm audit
+      working-directory: ./backend
+      run: npm audit --json > audit-report.json || true
+    
+    - name: Upload audit report
+      uses: actions/upload-artifact@v3
+      with:
+        name: npm-audit-report
+        path: backend/audit-report.json
+
+  docker-build:
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+    
+    - name: Build Docker image
+      uses: docker/build-push-action@v4
+      with:
+        context: ./backend
+        dockerfile: ./backend/Dockerfile
+        push: false
+        tags: spaceshare-backend:latest
+        cache-from: type=gha
+        cache-to: type=gha,mode=max

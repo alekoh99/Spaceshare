@@ -1,0 +1,110 @@
+name: Release & Version
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
+    
+    permissions:
+      contents: write
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Extract version
+      id: version
+      run: echo "version=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+    
+    - name: Create Release Notes
+      run: |
+        echo "# Release ${{ steps.version.outputs.version }}" > RELEASE_NOTES.md
+        echo "" >> RELEASE_NOTES.md
+        echo "## Changes" >> RELEASE_NOTES.md
+        git log --oneline --no-merges $(git describe --tags --abbrev=0)..HEAD >> RELEASE_NOTES.md || true
+    
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v1
+      with:
+        body_path: RELEASE_NOTES.md
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  build-artifacts:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+    
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v2
+    
+    - name: Create build artifacts directory
+      run: mkdir -p build-artifacts
+    
+    - name: Build backend
+      working-directory: ./backend
+      run: |
+        npm ci
+        npm run build || npm run transpile || npm run start:prod || echo "Build script not found"
+    
+    - name: Package backend
+      run: |
+        cd backend
+        tar -czf ../build-artifacts/spaceshare-backend-latest.tar.gz \
+          --exclude=node_modules \
+          --exclude=.env \
+          --exclude=.git \
+          .
+    
+    - name: Generate SBOM
+      run: |
+        npm install -g @cyclonedx/npm
+        cd backend
+        cyclonedx-npm -o ../build-artifacts/sbom.xml || true
+    
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: build-artifacts
+        path: build-artifacts/
+        retention-days: 90
+
+  documentation:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+    
+    - name: Generate API docs
+      working-directory: ./backend
+      run: |
+        npm install -g jsdoc || true
+        jsdoc -r . -d docs/ || echo "JSDoc not configured"
+    
+    - name: Upload documentation
+      uses: actions/upload-artifact@v3
+      with:
+        name: api-documentation
+        path: backend/docs/
