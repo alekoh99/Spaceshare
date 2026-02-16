@@ -1,0 +1,75 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "users": {
+      "$uid": {
+        ".read": "$uid === auth.uid || root.child('users').child($uid).child('role').val() === 'admin'",
+        ".write": "$uid === auth.uid || root.child('users').child($uid).child('role').val() === 'admin'",
+        "userId": {
+          ".validate": "newData.isString()"
+        },
+        "email": {
+          ".validate": "newData.isString()"
+        },
+        "name": {
+          ".validate": "newData.isString()"
+        },
+        "age": {
+          ".validate": "newData.isNumber()"
+        },
+        "city": {
+          ".validate": "newData.isString()"
+        },
+        "createdAt": {
+          ".validate": "newData.isString()"
+        },
+        "lastActiveAt": {
+          ".validate": "newData.isString()"
+        },
+        "$other": {
+          ".validate": true
+        }
+      }
+    },
+    "matches": {
+      "$matchId": {
+        ".read": "root.child('users').child(auth.uid).exists()",
+        ".write": "root.child('users').child(auth.uid).exists()",
+        "user1Id": {
+          ".validate": "newData.isString()"
+        },
+        "user2Id": {
+          ".validate": "newData.isString()"
+        },
+        "status": {
+          ".validate": "newData.isString() && (newData.val() === 'pending' || newData.val() === 'accepted' || newData.val() === 'rejected' || newData.val() === 'archived')"
+        },
+        "$other": {
+          ".validate": true
+        }
+      }
+    },
+    "conversations": {
+      "$conversationId": {
+        ".read": "root.child('users').child(auth.uid).exists() || root.child('users').child(auth.uid).child('role').val() === 'admin'",
+        ".write": "root.child('users').child(auth.uid).exists()",
+        "$other": {
+          ".validate": true
+        }
+      }
+    },
+    "messages": {
+      "$messageId": {
+        ".read": "root.child('users').child(auth.uid).exists()",
+        ".write": "newData.child('senderId').val() === auth.uid",
+        "$other": {
+          ".validate": true
+        }
+      }
+    },
+    "$other": {
+      ".validate": false
+    }
+  }
+}

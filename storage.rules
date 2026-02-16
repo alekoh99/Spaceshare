@@ -1,0 +1,91 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    // ════════════════════════════════════════════════════════════════
+    // SECURITY HELPERS
+    // ════════════════════════════════════════════════════════════════
+    
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isOwner(uid) {
+      return request.auth.uid == uid;
+    }
+    
+    function isAdmin() {
+      return request.auth.token.admin == true;
+    }
+    
+    function isValidImage() {
+      return request.resource.contentType.matches('image/.*') && 
+             request.resource.size < 10 * 1024 * 1024; // 10MB
+    }
+    
+    function isValidFile() {
+      return request.resource.size < 50 * 1024 * 1024; // 50MB
+    }
+    
+    // ════════════════════════════════════════════════════════════════
+    // DEFAULT DENY ALL
+    // ════════════════════════════════════════════════════════════════
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+
+    // ════════════════════════════════════════════════════════════════
+    // AVATARS - USER PROFILE PICTURES
+    // ════════════════════════════════════════════════════════════════
+    match /avatars/{userId}/{allPaths=**} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated() && isOwner(userId) && isValidImage();
+      allow delete: if isAuthenticated() && isOwner(userId);
+    }
+
+    // ════════════════════════════════════════════════════════════════
+    // MESSAGES - CONVERSATION-SPECIFIC FILES
+    // ════════════════════════════════════════════════════════════════
+    match /messages/{conversationId}/{fileId} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated() && isValidFile();
+      allow delete: if isAuthenticated() && isAdmin();
+    }
+
+    // ════════════════════════════════════════════════════════════════
+    // COMPLIANCE - EVIDENCE AND LEGAL DOCUMENTS
+    // ════════════════════════════════════════════════════════════════
+    match /compliance/evidence/{complaintId}/{fileId} {
+      allow read: if isAuthenticated() && isAdmin();
+      allow write: if isAuthenticated() && isValidFile();
+      allow delete: if isAdmin();
+    }
+
+    // ════════════════════════════════════════════════════════════════
+    // LISTING IMAGES
+    // ════════════════════════════════════════════════════════════════
+    match /listings/{listingId}/{fileId} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated() && isValidImage();
+      allow delete: if isAuthenticated();
+    }
+
+    // ════════════════════════════════════════════════════════════════
+    // DOCUMENT VERIFICATION
+    // ════════════════════════════════════════════════════════════════
+    match /verification/{userId}/{docId} {
+      allow read: if isAuthenticated() && (isOwner(userId) || isAdmin());
+      allow write: if isAuthenticated() && isOwner(userId) && isValidFile();
+      allow delete: if isAdmin();
+    }
+
+    // ════════════════════════════════════════════════════════════════
+    // REPORTS AND DISPUTES
+    // ════════════════════════════════════════════════════════════════
+    match /reports/{reportId}/{fileId} {
+      allow read: if isAuthenticated() && isAdmin();
+      allow write: if isAuthenticated() && isValidFile();
+      allow delete: if isAdmin();
+    }
+  }
+}

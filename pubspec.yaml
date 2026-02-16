@@ -1,0 +1,121 @@
+name: spaceshare
+description: "AI-powered roommate matching with integrated rent/utility payments"
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Firebase
+  firebase_core: ^4.2.1
+  firebase_auth: ^6.1.0
+  firebase_database: ^12.0.0
+  firebase_storage: ^13.0.4
+  firebase_messaging: ^16.0.4
+  firebase_analytics: ^12.0.0
+  firebase_crashlytics: ^5.0.5
+
+  # Google Sign-In
+  google_sign_in: ^6.2.0
+
+  # State Management
+  get: ^4.6.5
+  provider: ^6.0.0
+
+  # Payments
+  flutter_stripe: ^12.1.1
+  stripe_platform_interface: ^12.1.1
+
+  # Monetization - AdMob & AdSense
+  google_mobile_ads: ^7.0.0
+  
+  # Splash screen
+  flutter_native_splash: ^2.3.14
+
+  # UI/UX
+  intl: ^0.20.2
+  flutter_svg: ^2.0.7
+  cached_network_image: ^3.3.1
+  shimmer: ^3.0.0
+  lottie: ^3.3.2
+  card_swiper: ^3.0.1
+  font_awesome_flutter: ^10.7.0
+
+  # Networking & HTTP
+  http: ^1.1.0
+  dio: ^5.3.1
+  url_launcher: ^6.3.0
+
+  # Image picker
+  image_picker: ^1.0.0
+
+  # Phone authentication
+  intl_phone_number_input: ^0.7.2
+
+  # Video calls (Phase 2)
+  # agora_rtc_engine: ^6.0.0
+  # permission_handler: ^11.4.3
+
+  # Utils
+  uuid: ^4.0.0
+  shared_preferences: ^2.3.0
+  package_info_plus: ^9.0.0
+  device_info_plus: ^12.0.0
+  connectivity_plus: ^7.0.0
+
+  # Logging & Debugging
+  logger: ^2.0.2
+
+  # Date/Time
+  timeago: ^3.5.0
+
+  # Fonts - using Google Fonts for web compatibility
+  google_fonts: ^6.1.0
+
+  # Offline Caching & Local Storage
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+
+  # Immutable Models (Production-grade)
+  freezed_annotation: ^3.1.0
+  json_annotation: ^4.8.1
+
+  # Networking retry & backoff
+  retry: ^3.1.0
+
+  # Security & Encryption
+  pointycastle: ^4.0.0
+
+  # Monitoring & Analytics
+  sentry_flutter: ^9.9.1
+
+  crypto: any
+  local_auth: any
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^6.0.0
+  integration_test:
+    sdk: flutter
+
+  # Code generation
+  build_runner: ^2.4.11
+  freezed: ^3.2.3
+  json_serializable: ^6.8.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/animations/
+    - assets/fontawesome-free-7.1.0-web/svgs/solid/
+    - assets/fontawesome-free-7.1.0-web/svgs/regular/
+    - assets/fontawesome-free-7.1.0-web/svgs/brands/

@@ -1,0 +1,6 @@
+{
+    "github.copilot.chat.agent.autoFix": true,
+    "github.copilot.chat.agent.currentEditorContext.enabled": true,
+    "github.copilot.chat.codesearch.enabled": false,
+    "chat.extensionUnification.enabled": false
+}

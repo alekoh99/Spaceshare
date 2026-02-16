@@ -1,0 +1,13 @@
+# This package generates native code to customize Flutter's default white native splash screen
+# with background color and splash image.
+# Customize the parameters below, and run the following command in the terminal:
+# flutter pub run flutter_native_splash:create
+# To restore Flutter's default white splash screen, run the following command:
+# flutter pub run flutter_native_splash:remove
+
+flutter_native_splash:
+  color: "#1A1A1A"
+  color_dark: "#0a0e27"
+  image: assets/images/spaceshare_icon.png
+  android_gravity: center
+  ios_content_mode: center

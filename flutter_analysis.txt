@@ -1,0 +1,164 @@
+Analyzing SpaceShare...                                         
+
+   info • The type of the right operand ('SubscriptionTier') isn't a subtype or a supertype of the left operand ('SubscriptionTier') • lib/config/feature_gating.dart:54:29 • unrelated_type_equality_checks
+   info • The type of the right operand ('SubscriptionTier') isn't a subtype or a supertype of the left operand ('SubscriptionTier') • lib/config/feature_gating.dart:56:36 • unrelated_type_equality_checks
+warning • Unused import: '../services/sync_manager.dart' • lib/providers/auth_controller.dart:8:8 • unused_import
+warning • Unused import: '../services/api_client.dart' • lib/providers/auth_controller.dart:9:8 • unused_import
+warning • The value of the field '_isRefreshing' isn't used • lib/screens/admin/admin_analytics_dashboard.dart:12:8 • unused_field
+   info • Don't use 'BuildContext's across async gaps • lib/screens/admin/admin_analytics_dashboard.dart:19:28 • use_build_context_synchronously
+warning • The declaration '_getTierColor' isn't referenced • lib/screens/admin/admin_analytics_dashboard.dart:311:9 • unused_element
+   info • The private field _showEmailForm could be 'final' • lib/screens/auth/email_signup_screen.dart:24:8 • prefer_final_fields
+   info • Don't use 'BuildContext's across async gaps • lib/screens/auth/profile_setup_screen.dart:195:28 • use_build_context_synchronously
+   info • Don't use 'BuildContext's across async gaps • lib/screens/auth/profile_setup_screen.dart:218:28 • use_build_context_synchronously
+warning • The declaration '_buildReviewItem' isn't referenced • lib/screens/auth/profile_setup_screen.dart:521:10 • unused_element
+warning • The left operand can't be null, so the right operand is never executed • lib/screens/matching/match_detail_screen.dart:260:60 • dead_null_aware_expression
+warning • The left operand can't be null, so the right operand is never executed • lib/screens/matching/match_detail_screen.dart:274:48 • dead_null_aware_expression
+warning • The operand can't be 'null', so the condition is always 'true' • lib/screens/matching/match_detail_screen.dart:290:34 • unnecessary_null_comparison
+warning • The '!' will have no effect because the receiver can't be null • lib/screens/matching/match_detail_screen.dart:290:53 • unnecessary_non_null_assertion
+warning • The left operand can't be null, so the right operand is never executed • lib/screens/matching/match_detail_screen.dart:301:37 • dead_null_aware_expression
+warning • The declaration '_buildFilterOption' isn't referenced • lib/screens/matching/swipe_feed_screen.dart:363:10 • unused_element
+warning • The value of the local variable 'idx' isn't used • lib/screens/onboarding/compatibility_questionnaire_screen.dart:95:25 • unused_local_variable
+warning • The left operand can't be null, so the right operand is never executed • lib/screens/payments/payment_history_screen.dart:211:52 • dead_null_aware_expression
+warning • The value of the local variable 'description' isn't used • lib/screens/payments/payment_split_screen.dart:34:11 • unused_local_variable
+   info • 'groupValue' is deprecated and shouldn't be used. Use a RadioGroup ancestor to manage group value instead. This feature was deprecated after v3.32.0-0.0.pre • lib/screens/payments/payment_split_screen.dart:256:9 • deprecated_member_use
+   info • 'onChanged' is deprecated and shouldn't be used. Use RadioGroup to handle value change instead. This feature was deprecated after v3.32.0-0.0.pre • lib/screens/payments/payment_split_screen.dart:258:9 • deprecated_member_use
+warning • The member 'value' can only be used within instance members of subclasses of 'RxList' • lib/screens/verification/identity_verification_screen.dart:63:46 • invalid_use_of_protected_member
+warning • The member 'value' can only be used within instance members of subclasses of 'RxList' • lib/screens/verification/identity_verification_screen.dart:69:72 • invalid_use_of_protected_member
+   info • 'dart:html' is deprecated and shouldn't be used. Use package:web and dart:js_interop instead • lib/services/adsense_web_service_web.dart:1:1 • deprecated_member_use
+   info • Don't use web-only libraries outside Flutter web plugins • lib/services/adsense_web_service_web.dart:1:1 • avoid_web_libraries_in_flutter
+warning • The value of the field '_tag' isn't used • lib/services/advanced_compatibility_service.dart:9:23 • unused_field
+   info • The constant name 'DIMENSIONS' isn't a lowerCamelCase identifier • lib/services/advanced_compatibility_service.dart:13:45 • constant_identifier_names
+   info • The parameter name 'sum' matches a visible type name • lib/services/ai_preference_learning.dart:189:16 • avoid_types_as_parameter_names
+warning • The value of the local variable 'prefCleanliness' isn't used • lib/services/ai_recommendation_engine.dart:249:11 • unused_local_variable
+warning • The value of the local variable 'prefNoise' isn't used • lib/services/ai_recommendation_engine.dart:254:11 • unused_local_variable
+warning • The value of the local variable 'prefSocial' isn't used • lib/services/ai_recommendation_engine.dart:259:11 • unused_local_variable
+   info • The constant name 'RETRY_COUNT' isn't a lowerCamelCase identifier • lib/services/api_client.dart:15:20 • constant_identifier_names
+   info • The constant name 'RETRY_DELAY' isn't a lowerCamelCase identifier • lib/services/api_client.dart:16:25 • constant_identifier_names
+   info • The constant name 'REQUEST_TIMEOUT' isn't a lowerCamelCase identifier • lib/services/api_client.dart:17:25 • constant_identifier_names
+warning • The value of the field '_pendingRequests' isn't used • lib/services/api_client.dart:27:30 • unused_field
+   info • The type of the right operand ('ConnectivityResult') isn't a subtype or a supertype of the left operand ('List<ConnectivityResult>') • lib/services/api_client.dart:52:31 • unrelated_type_equality_checks
+warning • The value of the local variable 'productionUrl' isn't used • lib/services/api_client.dart:66:18 • unused_local_variable
+  error • The named parameter 'message' is required, but there's no corresponding argument • lib/services/api_client.dart:255:13 • missing_required_argument
+  error • Too many positional arguments: 0 expected, but 1 found • lib/services/api_client.dart:255:41 • extra_positional_arguments_could_be_named
+  error • The named parameter 'message' is required, but there's no corresponding argument • lib/services/api_client.dart:316:11 • missing_required_argument
+  error • Too many positional arguments: 0 expected, but 1 found • lib/services/api_client.dart:317:7 • extra_positional_arguments_could_be_named
+  error • The named parameter 'message' is required, but there's no corresponding argument • lib/services/api_client.dart:375:17 • missing_required_argument
+  error • Too many positional arguments: 0 expected, but 1 found • lib/services/api_client.dart:375:45 • extra_positional_arguments_could_be_named
+  error • The named parameter 'message' is required, but there's no corresponding argument • lib/services/api_client.dart:398:13 • missing_required_argument
+  error • Too many positional arguments: 0 expected, but 1 found • lib/services/api_client.dart:398:41 • extra_positional_arguments_could_be_named
+warning • The value of the field '_biometricCache' isn't used • lib/services/auth_user_service.dart:66:27 • unused_field
+warning • The value of the local variable 'uid' isn't used • lib/services/auth_user_service.dart:328:15 • unused_local_variable
+warning • The value of the local variable 'email' isn't used • lib/services/auth_user_service.dart:329:15 • unused_local_variable
+warning • The value of the local variable 'uid' isn't used • lib/services/auth_user_service.dart:349:17 • unused_local_variable
+warning • The value of the local variable 'email' isn't used • lib/services/auth_user_service.dart:350:17 • unused_local_variable
+   info • The constant name 'HARMFUL_KEYWORDS' isn't a lowerCamelCase identifier • lib/services/automated_moderation_service.dart:50:29 • constant_identifier_names
+   info • The constant name 'SUSPICIOUS_PATTERNS' isn't a lowerCamelCase identifier • lib/services/automated_moderation_service.dart:58:29 • constant_identifier_names
+warning • Unused import: 'package:firebase_auth/firebase_auth.dart' • lib/services/backend_auth_service.dart:2:8 • unused_import
+warning • Unused import: 'dart:convert' • lib/services/backend_auth_service.dart:3:8 • unused_import
+   info • The constant name 'SYNC_INTERVAL' isn't a lowerCamelCase identifier • lib/services/background_sync_service.dart:9:25 • constant_identifier_names
+   info • The constant name 'TIMEOUT' isn't a lowerCamelCase identifier • lib/services/background_sync_service.dart:10:25 • constant_identifier_names
+   info • Invalid use of a private type in a public API • lib/services/background_sync_service.dart:64:14 • library_private_types_in_public_api
+warning • The value of the field '_tag' isn't used • lib/services/biometric_auth_service.dart:8:23 • unused_field
+   info • The constant name 'COMPATIBILITY_DIMENSIONS' isn't a lowerCamelCase identifier • lib/services/compatibility_service.dart:145:43 • constant_identifier_names
+warning • The value of the local variable 'userData' isn't used • lib/services/compatibility_service.dart:688:13 • unused_local_variable
+   info • The constant name 'PROTECTED_CATEGORIES' isn't a lowerCamelCase identifier • lib/services/compliance_service.dart:46:29 • constant_identifier_names
+warning • The value of the local variable 'doc' isn't used • lib/services/database_health_service.dart:44:13 • unused_local_variable
+warning • The value of the local variable 'partialRefunds' isn't used • lib/services/dispute_resolution_service.dart:389:11 • unused_local_variable
+warning • The value of the field '_algorithm' isn't used • lib/services/encryption_service.dart:52:23 • unused_field
+warning • The value of the local variable 'plaintextBytes' isn't used • lib/services/encryption_service.dart:64:13 • unused_local_variable
+warning • The value of the local variable 'ivBytes' isn't used • lib/services/encryption_service.dart:66:13 • unused_local_variable
+warning • The value of the field '_tag' isn't used • lib/services/escrow_payment_service.dart:8:23 • unused_field
+   info • Don't invoke 'print' in production code • lib/services/escrow_payment_service.dart:317:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/services/escrow_payment_service.dart:334:7 • avoid_print
+   info • The constant name 'DEFAULT_HOLD_DAYS' isn't a lowerCamelCase identifier • lib/services/escrow_service.dart:26:20 • constant_identifier_names
+   info • The constant name 'DISPUTE_HOLD_DAYS' isn't a lowerCamelCase identifier • lib/services/escrow_service.dart:27:20 • constant_identifier_names
+   info • The constant name 'EVIDENCE_BUCKET' isn't a lowerCamelCase identifier • lib/services/evidence_upload_service.dart:20:23 • constant_identifier_names
+   info • The constant name 'MAX_FILE_SIZE' isn't a lowerCamelCase identifier • lib/services/evidence_upload_service.dart:21:20 • constant_identifier_names
+   info • The parameter name 'sum' matches a visible type name • lib/services/evidence_upload_service.dart:266:55 • avoid_types_as_parameter_names
+   info • The variable name 'VARIANTS' isn't a lowerCamelCase identifier • lib/services/fee_testing_service.dart:22:40 • non_constant_identifier_names
+warning • The value of the local variable 'mfaSession' isn't used • lib/services/firebase_auth_service.dart:320:15 • unused_local_variable
+warning • The value of the local variable 'mfaSession' isn't used • lib/services/firebase_auth_service.dart:358:15 • unused_local_variable
+warning • The value of the local variable 'mfaSession' isn't used • lib/services/firebase_auth_service.dart:382:15 • unused_local_variable
+warning • The value of the local variable 'doc' isn't used • lib/services/firestore_database_service.dart:74:13 • unused_local_variable
+warning • The value of the local variable 'testDoc' isn't used • lib/services/firestore_diagnostics_service.dart:44:13 • unused_local_variable
+   info • The constant name 'MAX_BATCH_SIZE' isn't a lowerCamelCase identifier • lib/services/firestore_optimization_service.dart:9:20 • constant_identifier_names
+   info • The constant name 'MAX_QUERY_LIMIT' isn't a lowerCamelCase identifier • lib/services/firestore_optimization_service.dart:10:20 • constant_identifier_names
+   info • The constant name 'CACHE_DURATION' isn't a lowerCamelCase identifier • lib/services/firestore_optimization_service.dart:11:25 • constant_identifier_names
+   info • Invalid use of a private type in a public API • lib/services/firestore_optimization_service.dart:163:14 • library_private_types_in_public_api
+warning • The declaration '_filterByAge' isn't referenced • lib/services/match_filter_service.dart:173:15 • unused_element
+warning • The declaration '_filterByBudget' isn't referenced • lib/services/match_filter_service.dart:182:15 • unused_element
+warning • The declaration '_filterByPets' isn't referenced • lib/services/match_filter_service.dart:191:15 • unused_element
+warning • The declaration '_filterBySleepSchedule' isn't referenced • lib/services/match_filter_service.dart:196:15 • unused_element
+warning • The declaration '_filterByCleanliness' isn't referenced • lib/services/match_filter_service.dart:204:15 • unused_element
+   info • Use 'isNotEmpty' instead of 'length' to test whether the collection is empty • lib/services/matching_service.dart:349:54 • prefer_is_empty
+warning • The left operand can't be null, so the right operand is never executed • lib/services/matching_service.dart:393:30 • dead_null_aware_expression
+warning • The left operand can't be null, so the right operand is never executed • lib/services/matching_service.dart:393:63 • dead_null_aware_expression
+warning • The left operand can't be null, so the right operand is never executed • lib/services/matching_service.dart:396:30 • dead_null_aware_expression
+warning • The left operand can't be null, so the right operand is never executed • lib/services/matching_service.dart:396:63 • dead_null_aware_expression
+   info • The constant name 'MESSAGE_BUCKET' isn't a lowerCamelCase identifier • lib/services/message_attachment_service.dart:17:23 • constant_identifier_names
+   info • The constant name 'MAX_FILE_SIZE' isn't a lowerCamelCase identifier • lib/services/message_attachment_service.dart:18:20 • constant_identifier_names
+warning • The method doesn't override an inherited method • lib/services/mongodb_database_service.dart:245:37 • override_on_non_overriding_member
+warning • The method doesn't override an inherited method • lib/services/mongodb_database_service.dart:276:31 • override_on_non_overriding_member
+warning • The method doesn't override an inherited method • lib/services/mongodb_database_service.dart:286:24 • override_on_non_overriding_member
+warning • The left operand can't be null, so the right operand is never executed • lib/services/notification_report_analytics_service.dart:462:62 • dead_null_aware_expression
+   info • The imported package 'get_storage' isn't a dependency of the importing package • lib/services/offline_queue_manager.dart:4:8 • depend_on_referenced_packages
+  error • Target of URI doesn't exist: 'package:get_storage/get_storage.dart' • lib/services/offline_queue_manager.dart:4:8 • uri_does_not_exist
+  error • Undefined class 'GetStorage' • lib/services/offline_queue_manager.dart:69:9 • undefined_class
+  error • The method 'GetStorage' isn't defined for the type 'OfflineQueueManager' • lib/services/offline_queue_manager.dart:69:31 • undefined_method
+warning • Unnecessary cast • lib/services/offline_queue_manager.dart:177:24 • unnecessary_cast
+   info • The parameter name 'sum' matches a visible type name • lib/services/response_time_tracking_service.dart:209:34 • avoid_types_as_parameter_names
+   info • The parameter name 'sum' matches a visible type name • lib/services/response_time_tracking_service.dart:479:47 • avoid_types_as_parameter_names
+   info • The parameter name 'sum' matches a visible type name • lib/services/response_time_tracking_service.dart:484:45 • avoid_types_as_parameter_names
+   info • The parameter name 'sum' matches a visible type name • lib/services/response_time_tracking_service.dart:498:48 • avoid_types_as_parameter_names
+   info • The parameter name 'sum' matches a visible type name • lib/services/response_time_tracking_service.dart:503:46 • avoid_types_as_parameter_names
+   info • The parameter name 'sum' matches a visible type name • lib/services/response_time_tracking_service.dart:518:55 • avoid_types_as_parameter_names
+   info • The parameter name 'sum' matches a visible type name • lib/services/safety_verification_service.dart:200:26 • avoid_types_as_parameter_names
+   info • The parameter name 'sum' matches a visible type name • lib/services/safety_verification_service.dart:203:43 • avoid_types_as_parameter_names
+   info • Statements in an if should be enclosed in a block • lib/services/safety_verification_service.dart:364:38 • curly_braces_in_flow_control_structures
+  error • Get isn't a type • lib/services/service_initializer.dart:99:26 • not_a_type
+warning • Unused import: 'dart:convert' • lib/services/sync_manager.dart:4:8 • unused_import
+   info • The constant name 'SYNC_INTERVAL' isn't a lowerCamelCase identifier • lib/services/sync_manager.dart:26:25 • constant_identifier_names
+   info • The constant name 'DEBOUNCE_DURATION' isn't a lowerCamelCase identifier • lib/services/sync_manager.dart:27:25 • constant_identifier_names
+   info • The imported package 'get_storage' isn't a dependency of the importing package • lib/services/token_storage.dart:1:8 • depend_on_referenced_packages
+  error • Target of URI doesn't exist: 'package:get_storage/get_storage.dart' • lib/services/token_storage.dart:1:8 • uri_does_not_exist
+  error • Undefined class 'GetStorage' • lib/services/token_storage.dart:13:9 • undefined_class
+  error • The method 'GetStorage' isn't defined for the type 'TokenStorage' • lib/services/token_storage.dart:13:31 • undefined_method
+   info • The constant name 'TYPING_TIMEOUT' isn't a lowerCamelCase identifier • lib/services/typing_indicator_service.dart:49:25 • constant_identifier_names
+   info • Don't invoke 'print' in production code • lib/services/typing_indicator_service.dart:69:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/services/typing_indicator_service.dart:79:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/services/typing_indicator_service.dart:113:7 • avoid_print
+warning • The declaration '_dualWrite' isn't referenced • lib/services/unified_database_service.dart:80:16 • unused_element
+warning • This 'onError' handler must return a value assignable to 'Result<Match>', but ends without returning a value • lib/services/unified_database_service.dart:748:27 • body_might_complete_normally_catch_error
+warning • This 'onError' handler must return a value assignable to 'Result<Match>', but ends without returning a value • lib/services/unified_database_service.dart:802:27 • body_might_complete_normally_catch_error
+warning • This 'onError' handler must return a value assignable to 'Result<Match>', but ends without returning a value • lib/services/unified_database_service.dart:856:27 • body_might_complete_normally_catch_error
+   info • Statements in an if should be enclosed in a block • lib/services/user_activity_analytics_service.dart:432:40 • curly_braces_in_flow_control_structures
+   info • Statements in an if should be enclosed in a block • lib/services/user_activity_analytics_service.dart:433:37 • curly_braces_in_flow_control_structures
+   info • Statements in an if should be enclosed in a block • lib/services/user_activity_analytics_service.dart:437:48 • curly_braces_in_flow_control_structures
+   info • Statements in an if should be enclosed in a block • lib/services/user_activity_analytics_service.dart:441:48 • curly_braces_in_flow_control_structures
+   info • Statements in an if should be enclosed in a block • lib/services/user_activity_analytics_service.dart:528:36 • curly_braces_in_flow_control_structures
+   info • Statements in an if should be enclosed in a block • lib/services/user_activity_analytics_service.dart:529:31 • curly_braces_in_flow_control_structures
+   info • Statements in an if should be enclosed in a block • lib/services/user_activity_analytics_service.dart:530:12 • curly_braces_in_flow_control_structures
+   info • Don't invoke 'print' in production code • lib/services/user_blocking_service.dart:352:7 • avoid_print
+   info • The parameter name 'sum' matches a visible type name • lib/services/user_blocking_service.dart:739:49 • avoid_types_as_parameter_names
+warning • The value of the local variable 'stdDev' isn't used • lib/services/user_blocking_service.dart:745:11 • unused_local_variable
+   info • The parameter name 'sum' matches a visible type name • lib/services/user_preference_learning_service.dart:380:53 • avoid_types_as_parameter_names
+   info • The parameter name 'sum' matches a visible type name • lib/services/user_preference_learning_service.dart:666:49 • avoid_types_as_parameter_names
+   info • The parameter name 'sum' matches a visible type name • lib/services/user_reputation_service.dart:209:36 • avoid_types_as_parameter_names
+   info • Statements in an if should be enclosed in a block • lib/services/user_reputation_service.dart:443:33 • curly_braces_in_flow_control_structures
+   info • Statements in an if should be enclosed in a block • lib/services/user_reputation_service.dart:444:14 • curly_braces_in_flow_control_structures
+warning • The value of the field '_agoraAppId' isn't used • lib/services/video_call_service.dart:85:23 • unused_field
+warning • The value of the field '_agoraAppCertificate' isn't used • lib/services/video_call_service.dart:86:23 • unused_field
+warning • The value of the field '_auth' isn't used • lib/services/web_auth_handler_stub.dart:23:22 • unused_field
+   info • 'dart:js' is deprecated and shouldn't be used. Use dart:js_interop instead • lib/services/web_auth_handler_web.dart:3:1 • deprecated_member_use
+   info • Don't use web-only libraries outside Flutter web plugins • lib/services/web_auth_handler_web.dart:3:1 • avoid_web_libraries_in_flutter
+warning • This default clause is covered by the previous cases • lib/utils/app_lifecycle_handler.dart:49:7 • unreachable_switch_default
+warning • The value of the local variable 'syncService' isn't used • lib/utils/app_lifecycle_handler.dart:60:15 • unused_local_variable
+   info • Parameters ''originalException' and 'stackTrace'' could be super parameters • lib/utils/exceptions.dart:188:3 • use_super_parameters
+   info • Don't invoke 'print' in production code • lib/utils/network_connectivity.dart:34:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/utils/network_connectivity.dart:47:7 • avoid_print
+   info • Angle brackets will be interpreted as HTML • lib/utils/result.dart:4:30 • unintended_html_in_doc_comment
+   info • Angle brackets will be interpreted as HTML • lib/utils/result.dart:4:56 • unintended_html_in_doc_comment
+warning • The value of the field '_offsetAnimation' isn't used • lib/utils/scroll_animation_utils.dart:145:26 • unused_field
+warning • The declaration '_getConfidenceColor' isn't referenced • lib/widgets/preference_learning_widgets.dart:248:9 • unused_element
+
+160 issues found. (ran in 26.6s)
